@@ -3,23 +3,22 @@ import 'package:flutter/material.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  final _usernameTextController = TextEditingController(text: 'amirahmad');
+  final _usernameTextController = TextEditingController(text: 'amirahmadi');
   final _passwordTextController = TextEditingController(text: '12345678');
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Directionality(
-        textDirection: TextDirection.ltr,
-        child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          backgroundColor: Colors.lightBlue[100],
-          body: Column(
+      home: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.lightBlue[100],
+        body: SafeArea(
+          child: Column(
             children: [
               Expanded(
                 flex: 1,
-                child: Text('data'),
+                child: Image.asset('assets/images/sticky_note.png'),
               ),
               Expanded(
                 flex: 3,
@@ -114,7 +113,7 @@ class LoginScreen extends StatelessWidget {
                               width: 16,
                             ),
                             Text(
-                              'با گوگل وارد شوید',
+                              'login with your google account',
                               style: TextStyle(
                                   fontFamily: 'IS', color: Colors.black),
                             ),
@@ -122,9 +121,23 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                          height: 220,
-                          child: Image.asset(
-                              'assets/images/login_ilustratiuon.jpg'))
+                        height: 184,
+                        child:
+                            Image.asset('assets/images/login_ilustratiuon.jpg'),
+                      ),
+                      OutlinedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.lightBlue[100],
+                            textStyle:
+                                TextStyle(fontFamily: 'sb', fontSize: 18),
+                            minimumSize: Size(200, 48),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        onPressed: () {
+                          print('object');
+                        },
+                        child: Text('I don' 't have account'),
+                      )
                     ],
                   ),
                 ),
