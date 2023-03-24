@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note/ui/screen/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -29,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
 class getLogin extends StatelessWidget {
-  const getLogin({
+  getLogin({
     Key? key,
     required TextEditingController usernameTextController,
     required TextEditingController passwordTextController,
@@ -126,13 +127,15 @@ class getLogin extends StatelessWidget {
                     height: 20,
                   ),
                   OutlinedButton(
-                    style: OutlinedButton.styleFrom(minimumSize: Size(342, 64)),
+                    style: OutlinedButton.styleFrom(
+                      minimumSize: Size(342, 64),
+                    ),
                     onPressed: () {
                       final snackBar = SnackBar(
                         content: const Text('next updates will add!'),
                         backgroundColor: (Colors.black),
                         action: SnackBarAction(
-                          label: 'dismiss',
+                          label: 'ok',
                           onPressed: () {},
                         ),
                       );
@@ -154,18 +157,18 @@ class getLogin extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 184,
+                    height: 130,
                     child: Image.asset('assets/images/login_ilustratiuon.jpg'),
                   ),
                   OutlinedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Colors.lightBlue[100],
-                        textStyle: TextStyle(fontFamily: 'sb', fontSize: 18),
-                        minimumSize: Size(200, 48),
+                        textStyle: TextStyle(fontFamily: 'sb', fontSize: 14),
+                        minimumSize: Size(100, 30),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20))),
                     onPressed: () {
-                      print('object');
+                      Navigator.of(context).push(_createRoute());
                     },
                     child: Text('I don' 't have account'),
                   )
@@ -177,4 +180,22 @@ class getLogin extends StatelessWidget {
       ),
     );
   }
+}
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => SignUpScreen(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(3.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }
